@@ -3,12 +3,12 @@
         <div>
             <input
                 type="checkbox"
-                v-model="props.todo.checked"
+                v-model="props.todo.completed"
                 :id="`task_${props.todo.id}${props.index}`"
             />
         </div>
         <div class="flex-grow min-w-0" v-text="props.todo.name" />
-        <div>Timestampt {{ props.todo.id }}</div>
+        <div v-text="todo.date" />
     </label>
 </template>
 

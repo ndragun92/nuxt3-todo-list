@@ -1,5 +1,5 @@
 export interface TodoInterface {
-    id: Crypto,
+    id: string,
     name: string,
     completed: boolean,
     date: Date

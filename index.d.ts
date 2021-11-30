@@ -9,5 +9,5 @@ declare module '#app' {
       $hello (msg: string): string
     }
   }
-  
+
   export { }
