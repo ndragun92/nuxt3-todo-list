@@ -3,5 +3,9 @@ export default function useDate() {
         return new Date()
     }
 
-    return {today}
+    function format(date: Date): string {
+        return new Date(date).toDateString()
+    }
+
+    return {today, format}
 }
