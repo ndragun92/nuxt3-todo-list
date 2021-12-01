@@ -9,25 +9,6 @@
 
 <script setup lang="ts">
 const { $welcome } = useNuxtApp()
-import { ref, onMounted } from 'vue'
-import { TodoInterface } from '~~/interfaces/TodoInterface';
-import useLocalStorage from '~~/composables/useLocalStorage';
-let { setArray: updateStorage, getArray: getTodos } = useLocalStorage()
-
-const todos = ref<TodoInterface[]>([])
-watch(
-    () => todos,
-    (todos) => {
-        updateStorage<TodoInterface[]>('todos', todos.value)
-    },
-    { deep: true }
-)
-
-
-onMounted(() => {
-    const savedTodos = getTodos<TodoInterface[]>('todos')
-    if (savedTodos.length) {
-        todos.value = savedTodos
-    }
-})
+import useTodos from '~~/composables/useTodos';
+let { todos } = useTodos()
 </script>
