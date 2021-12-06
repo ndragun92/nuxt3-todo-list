@@ -1,5 +1,7 @@
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { TodoInterface } from '~~/interfaces/TodoInterface';
+let { create: generateUniqueId } = useUniqueId()
+let { today } = useDate()
 
 export default function useTodos() {
     let { setArray: updateStorage, getArray: getTodos } = useLocalStorage()
@@ -22,9 +24,22 @@ export default function useTodos() {
         }
     }
 
+    function add(name: string) {
+        todos.value.unshift({
+            id: generateUniqueId(),
+            name: name,
+            completed: false,
+            date: today()
+        })
+    }
+
+    function remove (index: number) {
+        todos.value.splice(index, 1);
+    }
+
     onMounted(() => {
         get()
     })
 
-    return {get, todos}
+    return {get, todos: todos, add, remove}
 }
